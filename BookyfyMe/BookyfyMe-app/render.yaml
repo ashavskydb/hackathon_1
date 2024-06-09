@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: bookyfyme-backend
+    env: node
+    region: oregon
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PGHOST
+        value: ep-lucky-block-a2hfx48q.eu-central-1.aws.neon.tech
+      - key: PGDATABASE
+        value: BookyfyMe_app
+      - key: PGUSER
+        value: neondb_owner
+      - key: PGPASSWORD
+        value: 0Lu8kqCHMKNh
+      - key: JWT_SECRET
+        value: your_jwt_secret
+      - key: PORT
+        value: '5000'
+      - key: USE_SSL
+        value: 'true'
+      - key: SSL_REQUIRED
+        value: 'true'
+      - key: REJECT_UNAUTHORIZED
+        value: 'true'
+      - key: SQL_LOGGING
+        value: 'false'
+      - key: GOOGLE_API_KEY
+        value: AIzaSyAEUOrTX1RtMJ9vVgqgevhRlGyIYrNw2DA
+      - key: GOOGLE_HOTELS_CLIENT_ID
+        value: your_google_hotels_client_id
+      - key: GOOGLE_HOTELS_CLIENT_SECRET
+        value: your_google_hotels_client_secret
+
+  - type: web
+    name: bookyfyme-frontend
+    env: node
+    region: oregon
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run serve
+    envVars:
+      - key: VITE_API_URL
+        value: https://your-backend-url/api
